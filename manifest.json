@@ -1,11 +1,11 @@
 {
-    "name": "Chat GPT Simple APP",
+    "name": "VictorAI, the best AI",
     "short_name": "Chat GPT",
     "icons": [
         {
-            "src": "icon-192x192.png",
+            "src": "VictorAI-logo.jpg",
             "sizes": "180x180",
-            "type": "image/png"
+            "type": "image/jpg"
         }
     ],
     "start_url": "./index.html",
