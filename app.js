@@ -153,7 +153,7 @@ function send(reqUrl, body, onMessage, scussionCall) {
     console.error(data);
     loader.hidden = true
     if (!data) {
-      addItem("system", `Unable to access OpenAI, please check your network.`)
+      addItem("system", `Connexion impossible.`)
     } else {
       try {
         let openai = JSON.parse(data)
