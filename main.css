@@ -9,12 +9,13 @@ html {
   border-right: 10px solid transparent;
   border-bottom: 20px solid black;
   cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .arrow:hover {
   border-bottom-color: #007BFF; /* Change the arrow color on hover */
 }
-
 
 body {
   min-height: 100%;
