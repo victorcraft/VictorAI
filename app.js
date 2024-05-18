@@ -296,7 +296,7 @@ function showHistory(ok = true) {
         historyList.innerHTML += `<div class="history-item">
       <div style="display: flex; align-items: center;">
         <div id="name_${key}" style="flex: 1;" onclick='switchConv("${key}"); showHistory(false);'>${itemName} (${itemData.length}+)</div>
-        <input id="input_${key}" type="text" placeholder="会话名称" hidden />
+        <input id="input_${key}" type="text" placeholder="Mettez un nom" hidden />
         <button id="update_${key}" onclick='updateConvName("${key}");' class="icon" title="Save conversation name">🔧</button>
         <button id="delete_${key}" onclick='deleteConv("${key}"); showHistory(true);' class="icon" title="Delete">❌</button>
       </div></div>`
