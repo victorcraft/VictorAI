@@ -168,7 +168,7 @@ function send(reqUrl, body, onMessage, scussionCall) {
     var source = new SSE(
       reqUrl, {
       headers: {
-        "Authorization": "Bearer " + config.apiKey,
+        "Authorization": "Bearer " + OPENAI_KEY,
         "Content-Type": "application/json",
       },
       method: "POST",
