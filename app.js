@@ -335,7 +335,6 @@ function showSettings(ok = true) {
 
 function setSettingInput(config) {
   domainInput.placeholder = "https://api.openai.com"
-  apiKeyInput.placeholder = OPENAI_KEY
   maxTokensInput.placeholder = config.maxTokens
   systemPromptInput.placeholder = "You are a helpful assistant."
   temperatureInput.placeholder = config.temperature
