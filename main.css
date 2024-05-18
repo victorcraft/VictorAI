@@ -2,28 +2,6 @@ html {
   height: 100%;
 }
 
-.arrow {
-  width: 0; 
-  height: 0; 
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 20px solid black;
-  cursor: pointer;
-  position: absolute;
-  top: 50%; /* Place la flèche à 50% de la hauteur du conteneur parent */
-  transform: translateY(-50%); /* Déplace la flèche vers le haut de moitié de sa hauteur */
-  right: 10px; /* Ajuste la distance de la droite selon vos besoins */
-}
-
-.arrow:hover {
-  border-bottom-color: #007BFF; /* Change la couleur de la flèche au survol */
-}
-
-
-.arrow:hover {
-  border-bottom-color: #007BFF; /* Change the arrow color on hover */
-}
-
 body {
   min-height: 100%;
   max-width : 720px;
