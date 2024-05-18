@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
@@ -10,69 +10,95 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>VictorAI</title>
   <link rel="stylesheet" href="./main.css">
+  <style>
+    .arrow {
+      width: 30px;
+      height: 30px;
+      background-color: #fff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .arrow::before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 7px solid #000;
+      position: absolute;
+      top: 35%;
+    }
+  </style>
 </head>
-<div style="display: flex; align-items: center;">
-  <h2 style="display: inline-block;">VictorAI, the best AI <span style="font-size: 70%; color: #333">(v0.1.1)</span></h2>
-  <div style="flex: 1;"></div>
-  <input onclick="reset()" type="submit" title="New (ctrl + i)" value="🆕" />
-  <input onclick="showHistory(true)" type="submit" title="History (ctrl + h)" value="📜" />
-  <input onclick="showSettings(true)" type="submit" title="Settings (ctrl + ,)" value="⚙️" />
-</div>
-<div id="box"></div>
-<div id="input">
-  <div id="line" type="text" contenteditable="true"></div>
-  <div id="loader" class="loader" hidden></div>
-  <input onclick="onSend()" type="submit" title="按 'ctrl+enter' 或 'alt+enter' 快捷键发送" value="▶" />
-</div>
-<div style="text-align: right; font-size: 90%; margin-bottom: 4px;">
-  <a href="#top">TOP</a>
-  ctrl(alt)+enter
-</div>
-<div id="settingsModal" class="modal" style="display: none;">
-  <div id="settings" class="model-body">
-    <div style="display: flex; align-items: center;">
-      <h2 style="display: inline-block">Setting</h2>
-      <div style="flex: 1;"></div>
-      <input style="width: auto; font-size: 1.5rem;" onclick="showSettings(false)" type="submit" title="Close (Esc)"
-        value="❌" />
-    </div>
-    <label class="label">Domain</label>
-    <input type="text" id="domainInput" />
-    <label class="label">API Key <span style="color: red">*</span></label>
-    <input placeholder='OpenAI API Key' type="text" id="apiKeyInput" />
-    <label class="label">Model <span style="color: red">*</span></label>
-    <select id="modelInput" style="font-size: 1.1rem; padding: 3px">
-      <option value="gpt-3.5-turbo">ChatGPT ($0.002 / 1K tokens) *</option>
-      <option value="text-ada-001">Ada ($0.0004 / 1K tokens)</option>
-      <option value="text-babbage-001">Babbage ($0.0005 / 1K tokens)</option>
-      <option value="text-curie-001">Curie ($0.0020 / 1K tokens)</option>
-      <option value="text-davinci-003">Davinci ($0.0200 / 1K tokens)</option>
-    </select>
-    <label class="label">Max tokens</label>
-    <input type="text" id="maxTokensInput" />
-    <label class="label">Temperature</label>
-    <input type="text" id="temperatureInput" />
-    <label class="label">What is your assistant</label>
-    <textarea id="systemPromptInput"></textarea>
-    <label style="display: flex; align-items: center;" title="In a thread, each session is a new session (ctrl + ;)">
-      Long conversation
-      <input id="multiConvInput" type="checkbox" style="width: 1.2rem; height: 1.2rem; margin-left: 10px;" />
-    </label>
-    <details id="promptDetails" style="margin: 20px 0;">
-      <summary>Assistant Public Prompts</summary>
-      <div id="promptList"></div>
-    </details>
-    <div style="display: flex; align-items: center; margin: 30px 0;">
-      <div style="flex: 1;"></div>
-      <button onclick="saveSettings()">Update</button>
-      <div style="flex: 1;"></div>
-      <a href="https://github.com/excing/chatgpt" target="_blank" style="padding: 10px 0;"><svg
-          class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1" width="32"
-          aria-hidden="true">
-          <path fill-rule="evenodd"
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
-          </path>
-        </svg></a>
+<body>
+  <div style="display: flex; align-items: center;">
+    <h2 style="display: inline-block;">VictorAI, the best AI <span style="font-size: 70%; color: #333">(v0.1.1)</span></h2>
+    <div style="flex: 1;"></div>
+    <input onclick="reset()" type="submit" title="New (ctrl + i)" value="🆕" />
+    <input onclick="showHistory(true)" type="submit" title="History (ctrl + h)" value="📜" />
+    <input onclick="showSettings(true)" type="submit" title="Settings (ctrl + ,)" value="⚙️" />
+  </div>
+  <div id="box"></div>
+  <div id="input">
+    <div id="line" type="text" contenteditable="true"></div>
+    <div id="loader" class="loader" hidden></div>
+    <div class="arrow" onclick="onSend()" title="按 'ctrl+enter' 或 'alt+enter' 快捷键发送"></div>
+  </div>
+  <div style="text-align: right; font-size: 90%; margin-bottom: 4px;">
+    <a href="#top">TOP</a>
+    ctrl(alt)+enter
+  </div>
+  <div id="settingsModal" class="modal" style="display: none;">
+    <div id="settings" class="model-body">
+      <div style="display: flex; align-items: center;">
+        <h2 style="display: inline-block">Setting</h2>
+        <div style="flex: 1;"></div>
+        <input style="width: auto; font-size: 1.5rem;" onclick="showSettings(false)" type="submit" title="Close (Esc)"
+          value="❌" />
+      </div>
+      <label class="label">Domain</label>
+      <input type="text" id="domainInput" />
+      <label class="label">API Key <span style="color: red">*</span></label>
+      <input placeholder='OpenAI API Key' type="text" id="apiKeyInput" />
+      <label class="label">Model <span style="color: red">*</span></label>
+      <select id="modelInput" style="font-size: 1.1rem; padding: 3px">
+        <option value="gpt-3.5-turbo">ChatGPT ($0.002 / 1K tokens) *</option>
+        <option value="text-ada-001">Ada ($0.0004 / 1K tokens)</option>
+        <option value="text-babbage-001">Babbage ($0.0005 / 1K tokens)</option>
+        <option value="text-curie-001">Curie ($0.0020 / 1K tokens)</option>
+        <option value="text-davinci-003">Davinci ($0.0200 / 1K tokens)</option>
+      </select>
+      <label class="label">Max tokens</label>
+      <input type="text" id="maxTokensInput" />
+      <label class="label">Temperature</label>
+      <input type="text" id="temperatureInput" />
+      <label class="label">What is your assistant</label>
+      <textarea id="systemPromptInput"></textarea>
+      <label style="display: flex; align-items: center;" title="In a thread, each session is a new session (ctrl + ;)">
+        Long conversation
+        <input id="multiConvInput" type="checkbox" style="width: 1.2rem; height: 1.2rem; margin-left: 10px;" />
+      </label>
+      <details id="promptDetails" style="margin: 20px 0;">
+        <summary>Assistant Public Prompts</summary>
+        <div id="promptList"></div>
+      </details>
+      <div style="display: flex; align-items: center; margin: 30px 0;">
+        <div style="flex: 1;"></div>
+        <button onclick="saveSettings()">Update</button>
+        <div style="flex: 1;"></div>
+        <a href="https://github.com/excing/chatgpt" target="_blank" style="padding: 10px 0;"><svg
+            class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1" width="32"
+            aria-hidden="true">
+            <path fill-rule="evenodd"
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+            </path>
+          </svg></a>
+      </div>
     </div>
   </div>
 </div>
@@ -101,3 +127,5 @@
 
   gtag('config', 'G-RBJJWTTD37');
 </script>
+</body>
+</html>
