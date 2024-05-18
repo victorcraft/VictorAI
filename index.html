@@ -10,6 +10,41 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>VictorAI</title>
   <link rel="stylesheet" href="./main.css">
+    <style>
+    .arrow {
+      width: 50px;
+      height: 50px;
+      width: 40px;
+      height: 40px;
+      background-color: #fff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .arrow::before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 20px solid #000;
+      position: absolute;
+      top: 40%;
+      transition: border-bottom-color 0.3s;
+    }
+    .arrow:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    .arrow:hover::before {
+      border-bottom-color: #007BFF;
+    }
+  </style>
 </head>
 <body>
   <div style="display: flex; align-items: center;">
