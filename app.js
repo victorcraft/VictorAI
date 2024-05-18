@@ -303,7 +303,7 @@ function showHistory(ok = true) {
       } else {
         historyList.innerHTML += `<div class="history-item">
       <div style="display: flex; align-items: center; margin-bottom: 4px;">
-        <input id="input_${key}" type="text" placeholder="会话名称" />
+        <input id="input_${key}" type="text" placeholder="Mettez un nom ici" />
         <button onclick='saveConvName("${key}"); showHistory(true);' class="icon" title="Save conversation name">📝</button>
       </div>
       <div style="display: flex; align-items: center;">
