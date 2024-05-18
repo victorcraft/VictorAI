@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="./main.css">
   <style>
     .arrow {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       background-color: #fff;
       border-radius: 50%;
       display: flex;
@@ -29,12 +29,12 @@
       content: '';
       width: 0;
       height: 0;
-      border-left: 12px solid transparent;
-      border-right: 12px solid transparent;
-      border-bottom: 20px solid #000;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      border-left: 20px solid #000;
       position: absolute;
       right: 40%;
-      transition: border-bottom-color 0.3s;
+      transition: border-left-color 0.3s;
     }
 
     .arrow:hover {
@@ -43,7 +43,7 @@
     }
 
     .arrow:hover::before {
-      border-bottom-color: #007BFF;
+      border-left-color: #007BFF;
     }
   </style>
 </head>
@@ -113,31 +113,30 @@
       </div>
     </div>
   </div>
-</div>
-<div id="historyModal" class="modal" style="display: none;">
-  <div id="history" class="model-body">
-    <div style="display: flex; align-items: center;">
-      <h2 style="display: inline-block">History</h2>
-      <div style="flex: 1;"></div>
-      <input style="width: auto; font-size: 1.5rem;" onclick="showHistory(false)" type="submit" title="Close (Esc)"
-        value="❌" />
+  <div id="historyModal" class="modal" style="display: none;">
+    <div id="history" class="model-body">
+      <div style="display: flex; align-items: center;">
+        <h2 style="display: inline-block">History</h2>
+        <div style="flex: 1;"></div>
+        <input style="width: auto; font-size: 1.5rem;" onclick="showHistory(false)" type="submit" title="Close (Esc)"
+          value="❌" />
+      </div>
+      <input style="width: auto" onclick="deleteAllHistory()" type="submit" title="Delete all history"
+        value="Delete All" />
+      <div id="historyList"></div>
     </div>
-    <input style="width: auto" onclick="deleteAllHistory()" type="submit" title="Delete all history"
-      value="Delete All" />
-    <div id="historyList"></div>
   </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/sse.js@0.6.1/lib/sse.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
-<script src="./app.js"></script>
-<!-- Google tag (gtag.js) -->
-<script async src='https://www.googletagmanager.com/gtag/js?id=G-RBJJWTTD37'></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
+  <script src="https://cdn.jsdelivr.net/npm/sse.js@0.6.1/lib/sse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
+  <script src="./app.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src='https://www.googletagmanager.com/gtag/js?id=G-RBJJWTTD37'></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-RBJJWTTD37');
-</script>
+    gtag('config', 'G-RBJJWTTD37');
+  </script>
 </body>
 </html>
