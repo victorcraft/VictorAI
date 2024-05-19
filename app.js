@@ -102,7 +102,7 @@ function chat(reqMsgs) {
   if (!config.multi) {
     _message = [reqMsgs[0], reqMsgs[reqMsgs.length - 1]]
   }
-  send(`${config.domain}/v1/chat/completions`, {
+  send(`${config.domain}`, {
     "model": "gpt-3.5-turbo",
     "messages": _message,
     "max_tokens": config.maxTokens,
@@ -127,7 +127,7 @@ function completions(reqMsgs) {
     _prompt += `${lastMessage.role}: ${lastMessage.content}\n`
   }
   _prompt += "assistant: "
-  send(`${config.domain}/v1/chat/completions`, {
+  send(`${config.domain}`, {
     "model": config.model,
     "prompt": _prompt,
     "max_tokens": config.maxTokens,
