@@ -127,7 +127,7 @@ function completions(reqMsgs) {
     _prompt += `${lastMessage.role}: ${lastMessage.content}\n`
   }
   _prompt += "assistant: "
-  send(`${config.domain}/v1/completions`, {
+  send(`${config.domain}/v1/chat/completions`, {
     "model": config.model,
     "prompt": _prompt,
     "max_tokens": config.maxTokens,
