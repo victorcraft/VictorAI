@@ -334,7 +334,7 @@ function showSettings(ok = true) {
 }
 
 function setSettingInput(config) {
-  domainInput.placeholder = "https://api.openai.com"
+  domainInput.placeholder = "https://api.openai.com/v1/chat/completions"
   maxTokensInput.placeholder = config.maxTokens
   systemPromptInput.placeholder = "You are a helpful assistant."
   temperatureInput.placeholder = config.temperature
